@@ -1,31 +1,31 @@
 import pathlib
 
 ### Task parameters
-DATA_DIR = '<put your data dir here>'
+DATA_DIR = r'C:\Users\admin\Desktop\act\detr'
 SIM_TASK_CONFIGS = {
     'sim_transfer_cube_scripted':{
-        'dataset_dir': DATA_DIR + '/sim_transfer_cube_scripted',
+        'dataset_dir': DATA_DIR + '\sim_transfer_cube_scripted',
         'num_episodes': 50,
         'episode_len': 400,
         'camera_names': ['top']
     },
 
     'sim_transfer_cube_human':{
-        'dataset_dir': DATA_DIR + '/sim_transfer_cube_human',
+        'dataset_dir': DATA_DIR + '\sim_transfer_cube_human',
         'num_episodes': 50,
         'episode_len': 400,
         'camera_names': ['top']
     },
 
     'sim_insertion_scripted': {
-        'dataset_dir': DATA_DIR + '/sim_insertion_scripted',
+        'dataset_dir': DATA_DIR + '\sim_insertion_scripted',
         'num_episodes': 50,
         'episode_len': 400,
         'camera_names': ['top']
     },
 
     'sim_insertion_human': {
-        'dataset_dir': DATA_DIR + '/sim_insertion_human',
+        'dataset_dir': DATA_DIR + '\sim_insertion_human',
         'num_episodes': 50,
         'episode_len': 500,
         'camera_names': ['top']
