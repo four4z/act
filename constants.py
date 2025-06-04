@@ -1,7 +1,7 @@
 import pathlib
 
 ### Task parameters
-DATA_DIR = r'C:\Users\admin\Desktop\act\detr'
+DATA_DIR = '.\detr'
 SIM_TASK_CONFIGS = {
     'sim_transfer_cube_scripted':{
         'dataset_dir': DATA_DIR + '\sim_transfer_cube_scripted',
