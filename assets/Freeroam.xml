@@ -1,0 +1,46 @@
+<mujoco>
+    <include file="scene.xml"/>
+    <include file="vx300s_dependencies.xml"/>
+
+    <worldbody>
+        <!-- Load both robot arms -->
+        <include file="vx300s_left.xml"/>
+        <include file="vx300s_right.xml"/>
+
+        <!-- Object to grab -->
+        <body name="box" pos="0.2 0.5 0.05">
+            <joint name="box_joint" type="free"/>
+            <inertial pos="0 0 0" mass="0.1" diaginertia="0.002 0.002 0.002"/>
+            <geom name="box_geom" type="box" size="0.02 0.02 0.02" rgba="1 0 0 1"
+                  friction="1 0.005 0.0001" solimp="0.95 0.99 0.001" solref="0.005 1"
+                  contype="1" conaffinity="1"/>
+        </body>
+    </worldbody>
+
+    <actuator>
+        <!-- vx300s_left -->
+        <position joint="vx300s_left/waist" kp="800" ctrlrange="-3.14 3.14" ctrllimited="true"/>
+        <position joint="vx300s_left/shoulder" kp="1600" ctrlrange="-1.85 1.26" ctrllimited="true"/>
+        <position joint="vx300s_left/elbow" kp="800" ctrlrange="-1.76 1.61" ctrllimited="true"/>
+        <position joint="vx300s_left/forearm_roll" kp="10" ctrlrange="-3.14 3.14" ctrllimited="true"/>
+        <position joint="vx300s_left/wrist_angle" kp="50" ctrlrange="-1.86 2.23" ctrllimited="true"/>
+        <position joint="vx300s_left/wrist_rotate" kp="20" ctrlrange="-3.14 3.14" ctrllimited="true"/>
+        <position joint="vx300s_left/left_finger" kp="200" ctrlrange="0.021 0.057" ctrllimited="true"/>
+        <position joint="vx300s_left/right_finger" kp="200" ctrlrange="-0.057 -0.021" ctrllimited="true"/>
+
+        <!-- vx300s_right -->
+        <position joint="vx300s_right/waist" kp="800" ctrlrange="-3.14 3.14" ctrllimited="true"/>
+        <position joint="vx300s_right/shoulder" kp="1600" ctrlrange="-1.85 1.26" ctrllimited="true"/>
+        <position joint="vx300s_right/elbow" kp="800" ctrlrange="-1.76 1.61" ctrllimited="true"/>
+        <position joint="vx300s_right/forearm_roll" kp="10" ctrlrange="-3.14 3.14" ctrllimited="true"/>
+        <position joint="vx300s_right/wrist_angle" kp="50" ctrlrange="-1.86 2.23" ctrllimited="true"/>
+        <position joint="vx300s_right/wrist_rotate" kp="20" ctrlrange="-3.14 3.14" ctrllimited="true"/>
+        <position joint="vx300s_right/left_finger" kp="200" ctrlrange="0.021 0.057" ctrllimited="true"/>
+        <position joint="vx300s_right/right_finger" kp="200" ctrlrange="-0.057 -0.021" ctrllimited="true"/>
+    </actuator>
+
+    <keyframe>
+        <!-- Set robot in neutral pose, box in place -->
+        <key qpos="0 -0.96 1.16 0 -0.3 0 0.04 -0.04  0 -0.96 1.16 0 -0.3 0 0.04 -0.04  0.2 0.5 0.05 1 0 0 0"/>
+    </keyframe>
+</mujoco>
