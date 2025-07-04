@@ -3,11 +3,9 @@
     <include file="vx300s_dependencies.xml"/>
 
     <worldbody>
-        <!-- Load both robot arms -->
         <include file="vx300s_left.xml"/>
         <include file="vx300s_right.xml"/>
 
-        <!-- Object to grab -->
         <body name="box" pos="0.2 0.5 0.05">
             <joint name="box_joint" type="free"/>
             <inertial pos="0 0 0" mass="0.1" diaginertia="0.002 0.002 0.002"/>
@@ -18,29 +16,31 @@
     </worldbody>
 
     <actuator>
-        <!-- vx300s_left -->
-        <position joint="vx300s_left/waist" kp="800" ctrlrange="-3.14 3.14" ctrllimited="true"/>
-        <position joint="vx300s_left/shoulder" kp="1600" ctrlrange="-1.85 1.26" ctrllimited="true"/>
-        <position joint="vx300s_left/elbow" kp="800" ctrlrange="-1.76 1.61" ctrllimited="true"/>
-        <position joint="vx300s_left/forearm_roll" kp="10" ctrlrange="-3.14 3.14" ctrllimited="true"/>
-        <position joint="vx300s_left/wrist_angle" kp="50" ctrlrange="-1.86 2.23" ctrllimited="true"/>
-        <position joint="vx300s_left/wrist_rotate" kp="20" ctrlrange="-3.14 3.14" ctrllimited="true"/>
-        <position joint="vx300s_left/left_finger" kp="200" ctrlrange="0.021 0.057" ctrllimited="true"/>
-        <position joint="vx300s_left/right_finger" kp="200" ctrlrange="-0.057 -0.021" ctrllimited="true"/>
+        <position joint="vx300s_left/waist" kp="800" ctrlrange="-3.14 3.14" ctrllimited="true" name="left_Waist"/>
+        <position joint="vx300s_left/shoulder" kp="1600" ctrlrange="-1.85 1.26" ctrllimited="true" name="left_Shoulder"/>
+        <position joint="vx300s_left/elbow" kp="800" ctrlrange="-1.76 1.61" ctrllimited="true" name="left_Elbow"/>
+        <position joint="vx300s_left/forearm_roll" kp="10" ctrlrange="-3.14 3.14" ctrllimited="true" name="left_ForearmRoll"/>
+        <position joint="vx300s_left/wrist_angle" kp="50" ctrlrange="-1.86 2.23" ctrllimited="true" name="left_WristAngle"/>
+        <position joint="vx300s_left/wrist_rotate" kp="20" ctrlrange="-3.14 3.14" ctrllimited="true" name="left_WristRotate"/>
+        <position joint="vx300s_left/gripper" kp="200" ctrlrange="0 1" ctrllimited="true" name="left_gripper"/>
 
-        <!-- vx300s_right -->
-        <position joint="vx300s_right/waist" kp="800" ctrlrange="-3.14 3.14" ctrllimited="true"/>
-        <position joint="vx300s_right/shoulder" kp="1600" ctrlrange="-1.85 1.26" ctrllimited="true"/>
-        <position joint="vx300s_right/elbow" kp="800" ctrlrange="-1.76 1.61" ctrllimited="true"/>
-        <position joint="vx300s_right/forearm_roll" kp="10" ctrlrange="-3.14 3.14" ctrllimited="true"/>
-        <position joint="vx300s_right/wrist_angle" kp="50" ctrlrange="-1.86 2.23" ctrllimited="true"/>
-        <position joint="vx300s_right/wrist_rotate" kp="20" ctrlrange="-3.14 3.14" ctrllimited="true"/>
-        <position joint="vx300s_right/left_finger" kp="200" ctrlrange="0.021 0.057" ctrllimited="true"/>
-        <position joint="vx300s_right/right_finger" kp="200" ctrlrange="-0.057 -0.021" ctrllimited="true"/>
+        <position joint="vx300s_right/waist" kp="800" ctrlrange="-3.14 3.14" ctrllimited="true" name="right_Waist"/>
+        <position joint="vx300s_right/shoulder" kp="1600" ctrlrange="-1.85 1.26" ctrllimited="true" name="right_Shoulder"/>
+        <position joint="vx300s_right/elbow" kp="800" ctrlrange="-1.76 1.61" ctrllimited="true" name="right_Elbow"/>
+        <position joint="vx300s_right/forearm_roll" kp="10" ctrlrange="-3.14 3.14" ctrllimited="true" name="right_ForearmRoll"/>
+        <position joint="vx300s_right/wrist_angle" kp="50" ctrlrange="-1.86 2.23" ctrllimited="true" name="right_WristAngle"/>
+        <position joint="vx300s_right/wrist_rotate" kp="20" ctrlrange="-3.14 3.14" ctrllimited="true" name="right_WristRotate"/>
+        <position joint="vx300s_right/gripper" kp="300" ctrlrange="0 1" ctrllimited="true" name="right_gripper"/>
     </actuator>
 
+    <equality>
+        <!-- Left gripper: symmetric movement -->
+        <joint joint1="vx300s_left/gripper" joint2="vx300s_left/gripper_2" polycoef="0 1 0 0 0"/>
+        <!-- Right gripper: symmetric movement -->
+        <joint joint1="vx300s_right/gripper" joint2="vx300s_right/gripper_2" polycoef="0 1 0 0 0"/>
+    </equality>
+
     <keyframe>
-        <!-- Set robot in neutral pose, box in place -->
-        <key qpos="0 -0.96 1.16 0 -0.3 0 0.04 -0.04  0 -0.96 1.16 0 -0.3 0 0.04 -0.04  0.2 0.5 0.05 1 0 0 0"/>
+        <key qpos="0 -0.96 1.16 0 -0.3 0 0.04 0.04  0 -0.96 1.16 0 -0.3 0 0.04 0.04  0.2 0.5 0.05 1 0 0 0"/>
     </keyframe>
 </mujoco>
